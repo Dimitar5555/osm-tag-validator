@@ -44,7 +44,7 @@ function get_data(){
     .then(res => {
         var table = document.createElement('table');
         res.forEach(tag => {
-            fetch(`results/${tag.tag.replaceAll(':', '_')}.json`)
+            fetch(`data/${tag.tag.replaceAll(':', '_')}.json`)
             .then(res => res.json())
             .then(res => {
                 data[tag.tag.replaceAll(':', '_')] = res;
