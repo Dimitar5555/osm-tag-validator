@@ -24,5 +24,4 @@ jobs:
       with:
         message: 'Update .json files'
         add: '*.json'
-        cwd: '/website/data/'
-        new_branch: 'gh-pages'
+        cwd: '/docs/data/'
