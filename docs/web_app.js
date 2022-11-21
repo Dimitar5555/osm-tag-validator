@@ -39,7 +39,7 @@ function create_issues_table(key){
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody)
 }
 function get_data(){
-    fetch('tags.json')
+    fetch('data/tags.json')
     .then(res => res.json())
     .then(res => {
         var table = document.createElement('table');
