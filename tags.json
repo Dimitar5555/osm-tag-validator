@@ -17,7 +17,7 @@
         ],
         "semicolon_split": true,
         "colon_split": true,
-        "exact_match": false
+        "fuzzy_match": true
     },
     {
         "tag": "turn:lanes:forward",
