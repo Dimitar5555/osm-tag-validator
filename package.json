@@ -1,7 +1,6 @@
 {
-  "name": "test",
+  "name": "openstreetmap-tag-validator",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "engines": {
     "node": "14.x"
@@ -10,9 +9,20 @@
     "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dimitar5555",
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^2.6.7"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dimitar5555/osm-tag-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dimitar5555/osm-tag-validator/issues"
+  },
+  "description": ""
 }

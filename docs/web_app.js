@@ -40,10 +40,13 @@ function get_data(){
     .then(res => {
         var old_tbody1 = document.querySelector('#tags_list').querySelector('tbody');
         var new_tbody1 = document.createElement('tbody');
+        var last_parent_tag;
         res.forEach(tag => {
             fetch(`data/${tag.tag.replaceAll(':', '_')}.json`)
             .then(res => res.json())
             .then(res => {
+                var tr = document.createElement('tr');
+                var td1 = document.createElement('td');
                 if(tag.inherit_from){
                     var source = data[tag.inherit_from.replaceAll(':', '_')];
                     tag.allowed_values = source.allowed_values;
@@ -51,10 +54,28 @@ function get_data(){
                     tag.semicolon_split = source.semicolon_split;
                     tag.fuzzy_match = source.fuzzy_match;
                 }
+                if(tag.inherit_from || tag.parent_tag){
+                    tr.setAttribute('data-parent-tag', last_parent_tag);
+                    tr.classList.add('d-none');
+                }
+                else{
+                    last_parent_tag = tag.tag;
+                    var btn = document.createElement('button');
+                    btn.innerText = '+';
+                    btn.setAttribute('data-expand-parent-tag', last_parent_tag);
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        Array.from(document.querySelectorAll(`[data-parent-tag='${e.target.dataset.expandParentTag}']`))
+                        .forEach(element => {
+                            element.classList.toggle('d-none')
+                        });
+                        btn.innerText = btn.innerText=='-'?'+':'-'; 
+                    };
+                    td1.appendChild(btn);
+                    td1.appendChild(document.createTextNode(' '));
+                }
                 data[tag.tag.replaceAll(':', '_')] = res;
 
-                var tr = document.createElement('tr');
-                var td1 = document.createElement('td');
                 var a = document.createElement('a');
                 a.href = `?tag=${tag.tag}`;
                 a.setAttribute('data-tag', tag.tag);

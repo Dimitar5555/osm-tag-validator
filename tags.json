@@ -91,20 +91,23 @@
         "allowed_values": [
             "separate",
             "no"
-        ]
+        ],
+        "parent_tag": "sidewalk"
     },
     {
         "tag": "sidewalk:both",
         "allowed_values": [
             "separate",
             "no"
-        ]
+        ],
+        "parent_tag": "sidewalk"
     },
     {
         "tag": "sidewalk:left",
         "allowed_values": [
             "separate",
             "no"
-        ]
+        ],
+        "parent_tag": "sidewalk"
     }
 ]
