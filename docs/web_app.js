@@ -36,7 +36,7 @@ function create_issues_table(key){
 function get_data(){
     fetch('data/tags.json')
     .then(res => res.json())
-    .then(res => res.sort((a, b) => a.inherit_from || b.inherit_from))
+    .then(res => res.sort((a, b) => a.inherit_from || b.inherit_from || a.parent_tag || b.parent_tag))
     .then(res => {
         var old_tbody1 = document.querySelector('#tags_list').querySelector('tbody');
         var new_tbody1 = document.createElement('tbody');
