@@ -52,16 +52,16 @@ function process_page(key, page, allowed_values, non_standard_usages, options){
             process_page(key, page+1, allowed_values, non_standard_usages, options);
         }
         else{
-            fs.writeFileSync(`website/data/${key.replaceAll(':', '_')}.json`, JSON.stringify(non_standard_usages));
+            fs.writeFileSync(`docs/data/${key.replaceAll(':', '_')}.json`, JSON.stringify(non_standard_usages));
         }
     })
     .catch(error => {throw new Error(error);});
 }
 
-if (!fs.existsSync('website/data/')){
-    fs.mkdirSync('website/data/', {recursive: true});
+if (!fs.existsSync('docs/data/')){
+    fs.mkdirSync('docs/data/', {recursive: true});
 }
-fs.writeFileSync('website/data/tags.json', JSON.stringify(tags));
+fs.writeFileSync('docs/data/tags.json', JSON.stringify(tags));
 
 tags.forEach(tag => {
     if(tag.inherit_from){
