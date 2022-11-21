@@ -109,5 +109,93 @@
             "no"
         ],
         "parent_tag": "sidewalk"
+    },
+    {
+        "tag": "footway",
+        "allowed_values": [
+            "sidewalk",
+            "crossing",
+            "access_aisle",
+            "link",
+            "traffic_island"
+        ]
+    },
+    {
+        "tag": "crossing",
+        "allowed_values": [
+            "marked",
+            "unmarked",
+            "uncontrolled",
+            "traffic_signals",
+            "zebra",
+            "no"
+        ]
+    },
+    {
+        "tag": "surface",
+        "allowed_values": [
+            "paved",
+            "asphalt",
+            "chipseal",
+            "concrete",
+            "concrete:lanes",
+            "concrete:plates",
+            "paving_stones",
+            "sett",
+            "unhewn_cobblestone",
+            "cobblestone",
+            "metal",
+            "wood",
+            "stepping_stones",
+            "rubber",
+            "unpaved",
+            "compacted",
+            "fine_gravel",
+            "gravel",
+            "rock",
+            "pebblestone",
+            "ground",
+            "dirt",
+            "earth",
+            "grass",
+            "grass_paver",
+            "mud",
+            "sand",
+            "woodchips",
+            "snow",
+            "ice",
+            "salt",
+            "clay",
+            "tartan",
+            "artificial_turf",
+            "acrylic",
+            "metal_grid",
+            "carpet",
+            "artificial_turf"
+        ]
+    },
+    {
+        "tag": "sidewalk:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "tag": "sidewalk:left:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "tag": "sidewalk:both:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "tag": "sidewalk:right:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "tag": "wheelchair",
+        "allowed_values": [
+            "yes",
+            "limited",
+            "no"
+        ]
     }
 ]

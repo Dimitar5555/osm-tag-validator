@@ -21,7 +21,7 @@ function create_issues_table(key){
         var query = `[out:xml][timeout:25];(nwr["${key}"${issue.fuzzy_match?'~':'='}"${issue[0]}"];);out meta;>;out meta qt;`;
         var a2 = document.createElement('a');
         a2.innerText = 'Level0';
-        a2.href = `https://level0.osmz.ru/?url=://overpass-api.de/api/interpreter?data=${encodeURI(encodeURI(query))}`;
+        a2.href = `https://level0.osmz.ru/?url=${encodeURI('//overpass-api.de/api/interpreter?data='+encodeURI(query))}`;
         a2.target = '_blank';
         td3.appendChild(a1);
         td3.appendChild(document.createTextNode(' '))
@@ -37,11 +37,11 @@ function get_data(){
     fetch('data/tags.json')
     .then(res => res.json())
     .then(res => res.sort((a, b) => a.inherit_from > b.inherit_from || a.parent_tag > b.parent_tag))
-    .then(res => {
+    .then(loc_data => {
         var old_tbody1 = document.querySelector('#tags_list').querySelector('tbody');
         var new_tbody1 = document.createElement('tbody');
         var last_parent_tag;
-        res.forEach(tag => {
+        loc_data.forEach(tag => {
             fetch(`data/${tag.tag.replaceAll(':', '_')}.json`)
             .then(res => res.json())
             .then(res => {
@@ -60,19 +60,21 @@ function get_data(){
                 }
                 else{
                     last_parent_tag = tag.tag;
-                    var btn = document.createElement('button');
-                    btn.innerText = '+';
-                    btn.setAttribute('data-expand-parent-tag', last_parent_tag);
-                    btn.onclick = (e) => {
-                        e.preventDefault();
-                        Array.from(document.querySelectorAll(`[data-parent-tag='${e.target.dataset.expandParentTag}']`))
-                        .forEach(element => {
-                            element.classList.toggle('d-none')
-                        });
-                        btn.innerText = btn.innerText=='-'?'+':'-'; 
-                    };
-                    td1.appendChild(btn);
-                    td1.appendChild(document.createTextNode(' '));
+                    if(loc_data.filter(a => a.inherit_from==last_parent_tag || a.parent_tag==last_parent_tag).length>0){
+                        var btn = document.createElement('button');
+                        btn.innerText = '+';
+                        btn.setAttribute('data-expand-parent-tag', last_parent_tag);
+                        btn.onclick = (e) => {
+                            e.preventDefault();
+                            Array.from(document.querySelectorAll(`[data-parent-tag='${e.target.dataset.expandParentTag}']`))
+                            .forEach(element => {
+                                element.classList.toggle('d-none')
+                            });
+                            btn.innerText = btn.innerText=='-'?'+':'-'; 
+                        };
+                        td1.appendChild(btn);
+                        td1.appendChild(document.createTextNode(' '));
+                    }
                 }
                 data[tag.tag.replaceAll(':', '_')] = res;
 
