@@ -36,7 +36,7 @@
         "allowed_values": [
             "excellent",
             "good",
-            "intermediate ",
+            "intermediate",
             "bad",
             "very_bad",
             "horrible",
