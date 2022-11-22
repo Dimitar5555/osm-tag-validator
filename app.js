@@ -61,7 +61,10 @@ function process_page(key, page, allowed_values, non_standard_usages, options){
 if (!fs.existsSync('docs/data/')){
     fs.mkdirSync('docs/data/', {recursive: true});
 }
-fs.writeFileSync('docs/data/tags.json', JSON.stringify(tags));
+var tags_copy = JSON.parse(JSON.stringify(tags));
+tags_copy.forEach(tag => delete tag.allowed_values)
+fs.writeFileSync('docs/data/tags.json', JSON.stringify(tags_copy));
+delete tags_copy;
 
 tags.forEach(tag => {
     if(tag.inherit_from){
