@@ -1,24 +1,26 @@
 var data = {};
+var base_data = {};
 function create_issues_table(key){
     var issues = data[key.replaceAll(':', '_')];
+    var key_data = base_data[key.replaceAll(':', '_')];
     var old_tbody = document.querySelector('#issues_table').querySelector('tbody');
     var new_tbody = document.createElement('tbody');
     var sorted_issues = Object.keys(issues).map((key) => [key, issues[key]]);
     sorted_issues.sort((a, b) => a[1]<b[1]);
-    sorted_issues.forEach((issue, index) => {
+    sorted_issues.forEach((issue) => {
         var tr = document.createElement('tr');
 
         var td1 = document.createElement('td');
-        td1.innerText = `${key}${issue.fuzzy_match?'~':'='}${issue[0]}`;
+        td1.innerText = `${key}${key_data.fuzzy_match?'~':'='}${issue[0]}`;
         var td2 = document.createElement('td');
         td2.innerText = issue[1];
 
         var td3 = document.createElement('td');
         var a1 = document.createElement('a');
         a1.innerText = 'Overpass Turbo';
-        a1.href = `https://overpass-turbo.eu/?w="${key}"${issue.fuzzy_match?'~':'='}"${issue[0]}"+global&R`;
+        a1.href = `https://overpass-turbo.eu/?w="${key}"${key_data.fuzzy_match?'~':'='}"${issue[0]}"+global&R`;
         a1.target = '_blank';
-        var query = `[out:xml][timeout:25];(nwr["${key}"${issue.fuzzy_match?'~':'='}"${issue[0]}"];);out meta;>;out meta qt;`;
+        var query = `[out:xml][timeout:25];(nwr["${key}"${key_data.fuzzy_match?'~':'='}"${issue[0]}"];);out meta;>;out meta qt;`;
         var a2 = document.createElement('a');
         a2.innerText = 'Level0';
         a2.href = `https://level0.osmz.ru/?url=${encodeURI('//overpass-api.de/api/interpreter?data='+encodeURI(query))}`;
@@ -46,6 +48,7 @@ function get_data(){
             .then(res => res.json())
             .then(res => {
                 var tr = document.createElement('tr');
+                var td0 = document.createElement('td');
                 var td1 = document.createElement('td');
                 if(tag.inherit_from){
                     var source = data[tag.inherit_from.replaceAll(':', '_')];
@@ -72,10 +75,11 @@ function get_data(){
                             });
                             btn.innerText = btn.innerText=='-'?'+':'-'; 
                         };
-                        td1.appendChild(btn);
-                        td1.appendChild(document.createTextNode(' '));
+                        td0.appendChild(btn);
+                        td0.classList.add('text-center');
                     }
                 }
+                base_data[tag.tag.replaceAll(':', '_')] = tag;
                 data[tag.tag.replaceAll(':', '_')] = res;
 
                 var a = document.createElement('a');
@@ -91,6 +95,7 @@ function get_data(){
                 td1.appendChild(a);
                 var td2 = document.createElement('td');
                 td2.innerText = Object.keys(res).reduce((total, tag) => total + res[tag], 0);
+                tr.appendChild(td0);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 new_tbody1.appendChild(tr);
