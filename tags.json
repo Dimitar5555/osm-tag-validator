@@ -197,5 +197,15 @@
             "limited",
             "no"
         ]
+    },
+    {
+        "tag": "kerb",
+        "allowed_values": [
+            "rolled",
+            "raised",
+            "lowered",
+            "flush",
+            "no"
+        ]
     }
 ]
