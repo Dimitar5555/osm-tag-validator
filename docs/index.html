@@ -7,6 +7,14 @@
     <title>OpenStreetMap Tag Validator</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <style>
+        td {
+            word-break: break-all;
+        }
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 <body class="p-2">
     <h1>OpenStreetMap Tag Validator</h1>
@@ -18,7 +26,7 @@
                     <tr>
                         <th></th>
                         <th>Tag</th>
-                        <th>Total items to fix</th>
+                        <th>Total elements</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -29,7 +37,7 @@
                 <thead>
                     <tr>
                         <th>Tag</th>
-                        <th>Instances</th>
+                        <th>Elements</th>
                         <th>Links</th>
                     </tr>
                 </thead>
