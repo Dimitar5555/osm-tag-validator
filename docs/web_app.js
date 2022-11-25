@@ -1,3 +1,4 @@
+'use strict';
 var data = {};
 var base_data = {};
 function create_html_element(element, attributes={}){
@@ -22,16 +23,16 @@ function create_issues_table(key){
     sorted_issues.sort((a, b) => a[1]<b[1]);
     sorted_issues.forEach((issue) => {
         var tr = create_html_element('tr');
-
         var td1 = create_html_element('td', {innerText: `${key}${key_data.fuzzy_match?'~':'='}${issue[0]}`});
         var td2 = create_html_element('td', {innerText: issue[1]});
-
         var td3 = create_html_element('td');
+        
         var a1 = create_html_element('a', {
             innerText: 'Overpass Turbo',
             href: `https://overpass-turbo.eu/?w="${key}"${key_data.fuzzy_match?'~':'='}"${issue[0]}"+global&R`,
             target: '_blank'});
         var query = `[out:xml][timeout:25];(nwr["${key}"${key_data.fuzzy_match?'~':'='}"${issue[0]}"];);out meta;>;out meta qt;`;
+        
         var a2 = create_html_element('a', {
             innerText: 'Level0',
             href: `https://level0.osmz.ru/?url=${encodeURI('//overpass-api.de/api/interpreter?data='+encodeURI(query))}`,
@@ -54,19 +55,14 @@ function create_issues_table(key){
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
 }
 function load_data(){
-    var promises = [];
     fetch('keys.json')
     .then(res => res.json())
     .then(res => {
         res.forEach(key => {
             base_data[key.key] = key;
-            
             if(key.subkeys){
                 key.subkeys.forEach(subkey => {
-                    var subkey_data = {};
-                    subkey_data.fuzzy_match = key.fuzzy_match;
-                    subkey_data.parent_key = key.key;
-                    base_data[subkey] = subkey_data;
+                    base_data[subkey] = {fuzzy_match: key.fuzzy_match, parent_key: key.key};
                 });
             }
         });
@@ -74,18 +70,12 @@ function load_data(){
     })
     .then(res => res.json())
     .then(res => data = res)
-    .then(() => {
-        console.log(data);
-        Promise.all(promises)
-        .then(() => {
-            generate_key_list_table();
-        });
-    });
+    .then(() => generate_key_list_table());
 }
-function generate_row(key){
+function generate_row(key, as_subkey_of=false){
     var tr = create_html_element('tr');
     var td0 = create_html_element('td', {class: 'text-center'});
-    if(base_data[key].subkeys && base_data[key].subkeys.length>0){
+    if(base_data[key].subkeys && base_data[key].subkeys.length>0 && !as_subkey_of){
         var btn = create_html_element('button', {innerText: '+', 'data-expand-parent-key': key});
         btn.onclick = (e) => {
             e.preventDefault();
@@ -99,18 +89,37 @@ function generate_row(key){
     }
     else{
         tr.classList.add('d-none');
-        tr.setAttribute('data-parent-key', base_data[key].parent_key);
+        tr.setAttribute('data-parent-key', (base_data[key].parent_key || as_subkey_of));
     }
     var td1 = create_html_element('td');
-    var a = create_html_element('a', {href: `?key=${key}`, 'data-key': key, innerText: key});
-    a.onclick = (e) => {
-        e.preventDefault();
-        var key = e.target.dataset.key;
-        window.history.pushState(`object or string`, document.title, `?key=${key}`);
-        create_issues_table(key);
-    };
-    td1.appendChild(a);
-    var total_entries = base_data[key].parent_key?'ffdf':Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
+    if((base_data[key].subkeys==undefined || base_data[key].subkeys.length==0 || as_subkey_of)){
+        var a = create_html_element('a', {href: `?key=${key}`, 'data-key': key, innerText: key});
+        a.onclick = (e) => {
+            e.preventDefault();
+            var key = e.target.dataset.key;
+            window.history.pushState(`object or string`, document.title, `?key=${key}`);
+            create_issues_table(key);
+        };
+        td1.appendChild(a);
+    }
+    else{
+        td1.appendChild(document.createTextNode(key));
+    }
+    var total_entries = 0;
+    if(base_data[key].parent_key || as_subkey_of){
+        total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
+    }
+    else if(base_data[key].subkeys.length>0){
+        if(!base_data[key].skip_validation){
+            total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
+        }
+        base_data[key].subkeys
+        .map(subkey => {
+            for(value in data[subkey]){
+                total_entries += data[subkey][value];
+            }
+        });
+    }
     var td2 = create_html_element('td', {innerText: total_entries});
 
     tr.appendChild(td0);
@@ -122,10 +131,10 @@ function generate_key_list_table(){
     var old_tbody = document.querySelector('#tags_list').querySelector('tbody');
     var new_tbody = create_html_element('tbody');
     Object.keys(base_data).forEach(key => {
-        if(base_data[key].skip_validation){
-            return;
-        }
         new_tbody.appendChild(generate_row(key));
+        if(base_data[key].subkeys && base_data[key].subkeys.length>0 && base_data[key].skip_validation==undefined){
+            new_tbody.appendChild(generate_row(key, key));
+        }
     });
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
 }
