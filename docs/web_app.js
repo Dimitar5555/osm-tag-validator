@@ -1,4 +1,3 @@
-'use strict';
 var data = {};
 var base_data = {};
 function create_html_element(element, attributes={}){
