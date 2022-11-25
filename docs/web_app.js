@@ -106,18 +106,26 @@ function generate_row(key, as_subkey_of=false){
     }
     var total_entries = 0;
     if(base_data[key].parent_key || as_subkey_of || !base_data[key].subkeys){
+        //if the tag does not have any children but has a parent
         total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
     }
     else if(base_data[key].subkeys && base_data[key].subkeys.length>0){
-        if(!base_data[key].skip_validation){
+        //if the tag has children
+        if(base_data[key].skip_validation==undefined){
+            //skip parent tag if it's marked for skipping the validation step
             total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
         }
+        //get sum of all childrens' values
         base_data[key].subkeys
         .map(subkey => {
             for(value in data[subkey]){
                 total_entries += data[subkey][value];
             }
         });
+    }
+    else{
+        //for all other cases
+        total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
     }
     var td2 = create_html_element('td', {innerText: total_entries});
 
@@ -135,6 +143,14 @@ function generate_key_list_table(){
             new_tbody.appendChild(generate_row(key, key));
         }
     });
+    //adds last row in keys table
+    var last_tr = create_html_element('tr');
+    var last_td0 = create_html_element('td', {innerText: 'Total', colspan: 2, class: 'fw-bold'});
+    var last_td1 = create_html_element('td', {innerText: Object.keys(data).map(key => Object.keys(data[key]).map(value => data[key][value]).reduce((total, current) => total + current, 0)).reduce((total, current) => total + current, 0), class: 'fw-bold'});
+    last_tr.appendChild(last_td0);
+    last_tr.appendChild(last_td1);
+    console.log(Object.keys(data).map(key => Object.keys(data[key]).map(value => data[key][value])));
+    new_tbody.appendChild(last_tr);
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
 }
 load_data();
