@@ -24,4 +24,4 @@ jobs:
       with:
         message: 'Update .json files'
         add: '*.json'
-        cwd: '/docs/data/'
+        cwd: '/docs/'
