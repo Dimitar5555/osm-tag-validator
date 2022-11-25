@@ -86,7 +86,7 @@ function generate_row(key, as_subkey_of=false){
         };
         td0.appendChild(btn);
     }
-    else{
+    else if(base_data[key].parent_key || base_data[key].subkeys && base_data[key].subkeys.length>0){
         tr.classList.add('d-none');
         tr.setAttribute('data-parent-key', (base_data[key].parent_key || as_subkey_of));
     }
@@ -105,10 +105,10 @@ function generate_row(key, as_subkey_of=false){
         td1.appendChild(document.createTextNode(key));
     }
     var total_entries = 0;
-    if(base_data[key].parent_key || as_subkey_of){
+    if(base_data[key].parent_key || as_subkey_of || !base_data[key].subkeys){
         total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
     }
-    else if(base_data[key].subkeys.length>0){
+    else if(base_data[key].subkeys && base_data[key].subkeys.length>0){
         if(!base_data[key].skip_validation){
             total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
         }
