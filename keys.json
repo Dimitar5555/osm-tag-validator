@@ -1,0 +1,286 @@
+[
+    {
+        "key": "turn:lanes",
+        "allowed_values": [
+            "left",
+            "right",
+            "through",
+            "slight_left",
+            "slight_right",
+            "none",
+            "",
+            "sharp_left",
+            "sharp_right",
+            "reverse",
+            "merge_to_left",
+            "merge_to_right"
+        ],
+        "semicolon_split": true,
+        "colon_split": true,
+        "fuzzy_match": true
+    },
+    {
+        "key": "turn:lanes:forward",
+        "inherit_from": "turn:lanes"
+    },
+    {
+        "key": "turn:lanes:backward",
+        "inherit_from": "turn:lanes"
+    },
+    {
+        "key": "turn:lanes:both_ways",
+        "inherit_from": "turn:lanes"
+    },
+    {
+        "key": "smoothness",
+        "allowed_values": [
+            "excellent",
+            "good",
+            "intermediate",
+            "bad",
+            "very_bad",
+            "horrible",
+            "very_horrible",
+            "impassable"
+        ]
+    },
+    {
+        "key": "sidewalk:right:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk:both:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk:left:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk:right:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk:right:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk:right:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk:right:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk:right:smoothness",
+        "inherit_from": "smoothness"
+    },
+    {
+        "key": "sidewalk",
+        "allowed_values": [
+            "both",
+            "right",
+            "left",
+            "separate",
+            "no"
+        ]
+    },
+    {
+        "key": "sidewalk:right",
+        "allowed_values": [
+            "separate",
+            "no"
+        ],
+        "parent_key": "sidewalk"
+    },
+    {
+        "key": "sidewalk:both",
+        "allowed_values": [
+            "separate",
+            "no"
+        ],
+        "parent_key": "sidewalk"
+    },
+    {
+        "key": "sidewalk:left",
+        "allowed_values": [
+            "separate",
+            "no"
+        ],
+        "parent_key": "sidewalk"
+    },
+    {
+        "key": "footway",
+        "allowed_values": [
+            "sidewalk",
+            "crossing",
+            "access_aisle",
+            "link",
+            "traffic_island"
+        ]
+    },
+    {
+        "key": "crossing",
+        "allowed_values": [
+            "marked",
+            "unmarked",
+            "uncontrolled",
+            "traffic_signals",
+            "zebra",
+            "no"
+        ]
+    },
+    {
+        "key": "surface",
+        "allowed_values": [
+            "paved",
+            "asphalt",
+            "chipseal",
+            "concrete",
+            "concrete:lanes",
+            "concrete:plates",
+            "paving_stones",
+            "sett",
+            "unhewn_cobblestone",
+            "cobblestone",
+            "metal",
+            "wood",
+            "stepping_stones",
+            "rubber",
+            "unpaved",
+            "compacted",
+            "fine_gravel",
+            "gravel",
+            "rock",
+            "pebblestone",
+            "ground",
+            "dirt",
+            "earth",
+            "grass",
+            "grass_paver",
+            "mud",
+            "sand",
+            "woodchips",
+            "snow",
+            "ice",
+            "salt",
+            "clay",
+            "tartan",
+            "artificial_turf",
+            "acrylic",
+            "metal_grid",
+            "carpet",
+            "artificial_turf"
+        ]
+    },
+    {
+        "key": "sidewalk:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "key": "sidewalk:left:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "key": "sidewalk:both:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "key": "sidewalk:right:surface",
+        "inherit_from": "surface"
+    },
+    {
+        "key": "wheelchair",
+        "allowed_values": [
+            "yes",
+            "limited",
+            "no"
+        ]
+    },
+    {
+        "key": "kerb",
+        "allowed_values": [
+            "rolled",
+            "raised",
+            "lowered",
+            "flush",
+            "no"
+        ]
+    },
+    {
+        "key": "parking:lane",
+        "allowed_values": [],
+        "note": ":side: :left, :right, or :both"
+    },
+    {
+        "key": "parking:lane:right",
+        "allowed_values": [
+            "parallel",
+            "diagonal",
+            "perpendicular",
+            "no",
+            "yes",
+            "separate"
+        ],
+        "parent_key": "parking:lane"
+    },
+    {
+        "key": "parking:lane:both",
+        "inherit_from": "parking:lane:right",
+        "parent_key": "parking:lane"
+    },
+    {
+        "key": "parking:lane:left",
+        "inherit_from": "parking:lane:right",
+        "parent_key": "parking:lane"
+    },
+    {
+        "key": "parking:lane:(side):(orientation)",
+        "allowed_values": [
+            "on_street",
+            "half_on_kerb",
+            "on_kerb",
+            "street_side",
+            "painted_area_only",
+            "shoulder"
+        ],
+        "skip_validation": true
+    },
+    {
+        "key": "parking:lane:right:parallel",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:both:parallel",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:left:parallel",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:right:diagonal",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:both:diagonal",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:left:diagonal",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:right:perpendicular",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:both:perpendicular",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "parking:lane:left:perpendicular",
+        "inherit_from": "parking:lane:(side):(orientation)"
+    }
+]
