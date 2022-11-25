@@ -282,5 +282,13 @@
     {
         "key": "parking:lane:left:perpendicular",
         "inherit_from": "parking:lane:(side):(orientation)"
+    },
+    {
+        "key": "railway:signal:direction",
+        "allowed_values": [
+            "forward",
+            "backward",
+            "both"
+        ]
     }
 ]
