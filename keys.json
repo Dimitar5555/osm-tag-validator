@@ -436,6 +436,7 @@
         "allowed_values": [
             "fission",
             "fusion",
+            "wind_turbine",
             "water-storage",
             "water-pumped-storage",
             "run-on-the-river",
@@ -624,5 +625,43 @@
             "no"
         ],
         "parent_key": "power"
+    },
+    {
+        "key": "water",
+        "allowed_values": [
+            "lagoon",
+            "lake",
+            "oxbow",
+            "rapids",
+            "river",
+            "stream",
+            "stream_pool",
+            "basin",
+            "canal",
+            "ditch",
+            "drain",
+            "harbour",
+            "lock",
+            "moat",
+            "pond",
+            "reflecting_pond",
+            "reservoir",
+            "wastewater"
+        ]
+    },
+    {
+        "key": "basin",
+        "allowed_values": [
+            "infiltration",
+            "detention",
+            "retention",
+            "evaporation",
+            "aeration",
+            "cooling",
+            "footbath",
+            "settling",
+            "water_regeneration"
+        ],
+        "parent_key": "water"
     }
 ]
