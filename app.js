@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const base_url = 'https://taginfo.openstreetmap.org/api/4/key/';
-const VALUES_PER_PAGE = 800;
+const VALUES_PER_PAGE = 999;
 const keys = JSON.parse(fs.readFileSync('keys.json'));
 async function get_stats(key){
     console.log

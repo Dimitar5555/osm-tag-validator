@@ -284,11 +284,345 @@
         "inherit_from": "parking:lane:(side):(orientation)"
     },
     {
+        "key": "railway",
+        "skip_validation": true
+    },
+    {
         "key": "railway:signal:direction",
         "allowed_values": [
             "forward",
             "backward",
             "both"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "railway:switch",
+        "allowed_values": [
+            "default",
+            "three_way",
+            "single_slip",
+            "double_slip",
+            "wye",
+            "abt"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "railway:turnout_side",
+        "allowed_values": [
+            "left",
+            "right"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "railway:switch:electric",
+        "allowed_values": [
+            "yes",
+            "no"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "railway:switch:local_operated",
+        "allowed_values": [
+            "yes",
+            "no"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "railway:switch:movable_frog",
+        "allowed_values": [
+            "yes",
+            "no"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "railway:switch:resetting",
+        "allowed_values": [
+            "yes",
+            "no"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "railway:switch:configuratiom",
+        "allowed_values": [
+            "inside",
+            "outside"
+        ],
+        "parent_key": "railway"
+    },
+    {
+        "key": "power",
+        "allowed_values": [
+            "cable",
+            "catenary_mast",
+            "compensator",
+            "connection",
+            "converter",
+            "generator",
+            "heliostat",
+            "insulator",
+            "line",
+            "busbar",
+            "bay",
+            "minor_line",
+            "plant",
+            "polwe",
+            "portal",
+            "substaton",
+            "switch",
+            "switchgear",
+            "terminal",
+            "tower",
+            "transformer",
+            "pole",
+            "substation"
         ]
+    },
+    {
+        "key": "location",
+        "allowed_values": [
+            "underground",
+            "indoor",
+            "underwater",
+            "overground",
+            "overhead",
+            "outdoor",
+            "roof",
+            "surface",
+            "platform"
+        ]
+    },
+    {
+        "key": "converter",
+        "allowed_values": [
+            "lcc",
+            "vsc",
+            "back-to-back",
+            "motor_generator"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "generator:source",
+        "allowed_values": [
+            "nuclear",
+            "wind",
+            "hydro",
+            "tidal",
+            "wave",
+            "geothermal",
+            "solar",
+            "coal",
+            "gas",
+            "biomass",
+            "biofuel",
+            "biogas",
+            "oil",
+            "diesel",
+            "gasoline",
+            "waste",
+            "battery"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "generator:method",
+        "allowed_values": [
+            "fission",
+            "fusion",
+            "water-storage",
+            "water-pumped-storage",
+            "run-on-the-river",
+            "barrage",
+            "stream",
+            "thermal",
+            "photovoltaic",
+            "combustion",
+            "gasification",
+            "anaerobic_digestion"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "generator:plant",
+        "allowed_values": [
+            "output",
+            "intermediate"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "line",
+        "allowed_values": [
+            "bay",
+            "busbar",
+            "substation"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "busbar",
+        "allowed_values": [
+            "rigid",
+            "flexible"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "plant:source",
+        "allowed_values": [
+            "nuclear",
+            "wind",
+            "hydro",
+            "tidal",
+            "wave",
+            "geothermal",
+            "solar",
+            "coal",
+            "gas",
+            "biomass",
+            "biofuel",
+            "biogas",
+            "oil",
+            "diesel",
+            "gasoline",
+            "waste",
+            "battery"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "plant:method",
+        "allowed_values": [
+            "fission",
+            "fusion",
+            "water-storage",
+            "water-pumped-storage",
+            "run-on-the-river",
+            "barrage",
+            "stream",
+            "thermal",
+            "photovoltaic",
+            "combustion",
+            "gasification",
+            "anaerobic_digestion"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "structure",
+        "allowed_values": [
+            "lattice",
+            "solid",
+            "tubular"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "substation",
+        "allowed_values": [
+            "transmission",
+            "distribution",
+            "minor_distribution",
+            "industrial",
+            "generation",
+            "transition",
+            "traction",
+            "converter",
+            "compensation",
+            "compression",
+            "measurement"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "switch",
+        "allowed_values": [
+            "mechanical",
+            "circuit_breaker",
+            "disconnector",
+            "earthing"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "gas_insulated",
+        "allowed_values": [
+            "yes",
+            "no"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "transformer",
+        "allowed_values": [
+            "main",
+            "auxliary",
+            "distribution",
+            "generator",
+            "converter",
+            "phase_angle_regulator"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "design",
+        "allowed_values": [
+            "one-level",
+            "semi-horizontal_one-level",
+            "two-level",
+            "three-level",
+            "four-level",
+            "asymmetric",
+            "armless_asymmetric",
+            "triangle",
+            "armless_triangle",
+            "flag",
+            "semi-vertical",
+            "delta",
+            "monopolar",
+            "barrel",
+            "donau;one-level",
+            "six-level",
+            "nine-level",
+            "delta_two-level",
+            "delta_three-level",
+            "y-frame",
+            "x-frame",
+            "h-frame",
+            "h-frame_one-level",
+            "h-frame_two-level",
+            "h-frame_three-level",
+            "guyed_h-frame",
+            "portal",
+            "portal_two-level",
+            "portal_three-level",
+            "guyed_v-frame",
+            "bipole"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "guyed",
+        "allowed_values": [
+            "yes",
+            "pole",
+            "no"
+        ],
+        "parent_key": "power"
+    },
+    {
+        "key": "design:incomplete",
+        "allowed_values": [
+            "yes",
+            "no"
+        ],
+        "parent_key": "power"
     }
 ]
