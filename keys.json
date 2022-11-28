@@ -79,6 +79,7 @@
     {
         "key": "sidewalk",
         "allowed_values": [
+            "yes",
             "both",
             "right",
             "left",
@@ -171,7 +172,8 @@
             "acrylic",
             "metal_grid",
             "carpet",
-            "artificial_turf"
+            "artificial_turf",
+            "paving_stones:30"
         ]
     },
     {
