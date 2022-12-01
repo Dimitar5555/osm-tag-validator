@@ -90,6 +90,7 @@
     {
         "key": "sidewalk:right",
         "allowed_values": [
+            "yes",
             "separate",
             "no"
         ],
@@ -98,6 +99,7 @@
     {
         "key": "sidewalk:both",
         "allowed_values": [
+            "yes",
             "separate",
             "no"
         ],
@@ -106,6 +108,7 @@
     {
         "key": "sidewalk:left",
         "allowed_values": [
+            "yes",
             "separate",
             "no"
         ],
