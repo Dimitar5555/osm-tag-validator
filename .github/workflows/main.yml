@@ -25,3 +25,4 @@ jobs:
         message: 'Update .json files'
         add: '*.json'
         cwd: '/docs/'
+        pull: '--rebase --autostash
