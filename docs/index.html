@@ -18,7 +18,33 @@
 </head>
 <body class="p-2">
     <h1>OpenStreetMap Tag Validator</h1>
-    <br/>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-outline-primary mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        About
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">About</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>What is this tool?</h4>
+                This tool retrieves data from taginfo and validates all of their values. Any values which are not whitlisted are shown in the table on the right. All supported tags are shown in the table on the left.
+                <h4>I've spotted a mistake / I want to add another tag for validation</h4>
+                Feel free to let me know on <a href="https://github.com/Dimitar5555/osm-tag-validator/issues/new/" target="_blank">Github</a>
+                <h4>What tags are currently supported?</h4>
+                See <a href="https://github.com/Dimitar5555/osm-tag-validator/blob/master/keys.json" target="_blank">keys.json</a>.
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-3">
             <table class="table table-bordered table-sm" id="tags_list">
