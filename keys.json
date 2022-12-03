@@ -668,5 +668,25 @@
             "water_regeneration"
         ],
         "parent_key": "water"
+    },
+    {
+        "key": "crossing:markings",
+        "allowed_values": [
+            "yes",
+            "no",
+            "surface",
+            "lines",
+            "lines:paired",
+            "dashes",
+            "dots",
+            "zebra",
+            "zebra:double",
+            "zebra:paired",
+            "zebra:bicolor",
+            "ladder",
+            "ladder:skewed",
+            "lader:paired",
+            "pictograms"
+        ]
     }
 ]
