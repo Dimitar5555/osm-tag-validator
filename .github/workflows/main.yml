@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  idToken: write
   
 jobs:
   update_tags_data:
