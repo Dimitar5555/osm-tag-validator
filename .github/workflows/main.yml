@@ -26,7 +26,7 @@ jobs:
       with:
         message: 'Update .json files'
         add: '*.json'
-        remove: './docs/detected_issues.json'
+        remove: '*.json'
         cwd: '/docs/'
         pull: '--rebase --autostash'
   # Build job
