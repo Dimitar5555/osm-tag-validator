@@ -214,34 +214,7 @@
         ]
     },
     {
-        "key": "parking:lane",
-        "allowed_values": [],
-        "note": ":side: :left, :right, or :both"
-    },
-    {
-        "key": "parking:lane:right",
-        "allowed_values": [
-            "parallel",
-            "diagonal",
-            "perpendicular",
-            "no",
-            "yes",
-            "separate"
-        ],
-        "parent_key": "parking:lane"
-    },
-    {
-        "key": "parking:lane:both",
-        "inherit_from": "parking:lane:right",
-        "parent_key": "parking:lane"
-    },
-    {
-        "key": "parking:lane:left",
-        "inherit_from": "parking:lane:right",
-        "parent_key": "parking:lane"
-    },
-    {
-        "key": "parking:lane:(side):(orientation)",
+        "key": "parking:(side)",
         "allowed_values": [
             "on_street",
             "half_on_kerb",
@@ -253,40 +226,77 @@
         "skip_validation": true
     },
     {
-        "key": "parking:lane:right:parallel",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:left",
+        "inherit_from": "parking:(side)",
     },
     {
-        "key": "parking:lane:both:parallel",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:both",
+        "inherit_from": "parking:(side)",
     },
     {
-        "key": "parking:lane:left:parallel",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:right",
+        "inherit_from": "parking:(side)",
     },
     {
-        "key": "parking:lane:right:diagonal",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:(side):orientation",
+        "allowed_values": [
+            "parallel",
+            "diagonal",
+            "perpendicular"
+        ],
+        "skip_validation": true
     },
     {
-        "key": "parking:lane:both:diagonal",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:left:orientation",
+        "inherit_from": "parking:(side):orientation",
     },
     {
-        "key": "parking:lane:left:diagonal",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:both:orientation",
+        "inherit_from": "parking:(side):orientation",
     },
     {
-        "key": "parking:lane:right:perpendicular",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:right:orientation",
+        "inherit_from": "parking:(side):orientation",
     },
     {
-        "key": "parking:lane:both:perpendicular",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:(side):markings",
+        "allowed_values": [
+            "yes",
+            "no"
+        ],
+        "skip_validation": true
     },
     {
-        "key": "parking:lane:left:perpendicular",
-        "inherit_from": "parking:lane:(side):(orientation)"
+        "key": "parking:left:markings",
+        "inherit_from": "parking:(side):markings",
+    },
+    {
+        "key": "parking:both:markings",
+        "inherit_from": "parking:(side):markings",
+    },
+    {
+        "key": "parking:right:markings",
+        "inherit_from": "parking:(side):markings",
+    },
+    {
+        "key": "parking:(side):direction",
+        "allowed_values": [
+            "back_in",
+            "head_in"
+        ],
+        "skip_validation": true
+    },
+    {
+        "key": "parking:left:direction",
+        "inherit_from": "parking:(side):direction",
+    },
+    {
+        "key": "parking:both:direction",
+        "inherit_from": "parking:(side):direction",
+    },
+    {
+        "key": "parking:right:direction",
+        "inherit_from": "parking:(side):direction",
     },
     {
         "key": "railway",
