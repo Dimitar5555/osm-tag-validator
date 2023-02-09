@@ -198,6 +198,7 @@
     {
         "key": "wheelchair",
         "allowed_values": [
+            "designated",
             "yes",
             "limited",
             "no"
@@ -227,15 +228,15 @@
     },
     {
         "key": "parking:left",
-        "inherit_from": "parking:(side)",
+        "inherit_from": "parking:(side)"
     },
     {
         "key": "parking:both",
-        "inherit_from": "parking:(side)",
+        "inherit_from": "parking:(side)"
     },
     {
         "key": "parking:right",
-        "inherit_from": "parking:(side)",
+        "inherit_from": "parking:(side)"
     },
     {
         "key": "parking:(side):orientation",
@@ -248,15 +249,15 @@
     },
     {
         "key": "parking:left:orientation",
-        "inherit_from": "parking:(side):orientation",
+        "inherit_from": "parking:(side):orientation"
     },
     {
         "key": "parking:both:orientation",
-        "inherit_from": "parking:(side):orientation",
+        "inherit_from": "parking:(side):orientation"
     },
     {
         "key": "parking:right:orientation",
-        "inherit_from": "parking:(side):orientation",
+        "inherit_from": "parking:(side):orientation"
     },
     {
         "key": "parking:(side):markings",
@@ -268,15 +269,15 @@
     },
     {
         "key": "parking:left:markings",
-        "inherit_from": "parking:(side):markings",
+        "inherit_from": "parking:(side):markings"
     },
     {
         "key": "parking:both:markings",
-        "inherit_from": "parking:(side):markings",
+        "inherit_from": "parking:(side):markings"
     },
     {
         "key": "parking:right:markings",
-        "inherit_from": "parking:(side):markings",
+        "inherit_from": "parking:(side):markings"
     },
     {
         "key": "parking:(side):direction",
@@ -288,15 +289,15 @@
     },
     {
         "key": "parking:left:direction",
-        "inherit_from": "parking:(side):direction",
+        "inherit_from": "parking:(side):direction"
     },
     {
         "key": "parking:both:direction",
-        "inherit_from": "parking:(side):direction",
+        "inherit_from": "parking:(side):direction"
     },
     {
         "key": "parking:right:direction",
-        "inherit_from": "parking:(side):direction",
+        "inherit_from": "parking:(side):direction"
     },
     {
         "key": "railway",
