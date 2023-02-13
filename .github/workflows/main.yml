@@ -25,8 +25,7 @@ jobs:
     - uses: EndBug/add-and-commit@v9
       with:
         message: 'Update .json files'
-        add: '*.json'
-        cwd: '/docs/'
+        add: '/docs/*.json'
         pull: '--rebase --autostash'
   # Build job
   build:
