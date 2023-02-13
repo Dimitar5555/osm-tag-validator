@@ -54,7 +54,7 @@ function create_issues_table(key){
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
 }
 function load_data(){
-    fetch('keys.json')
+    fetch('data/keys.json')
     .then(res => res.json())
     .then(res => {
         res.forEach(key => {
@@ -65,7 +65,7 @@ function load_data(){
                 });
             }
         });
-        return fetch('detected_issues.json');
+        return fetch('data/detected_issues.json');
     })
     .then(res => res.json())
     .then(res => data = res)

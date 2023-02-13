@@ -95,7 +95,7 @@ function generate_keys_data(){
     // });
     return res;
 }
-fs.writeFileSync('docs/keys.json', JSON.stringify(generate_keys_data()));
+fs.writeFileSync('docs/data/keys.json', JSON.stringify(generate_keys_data()));
 var detected_issues = {};
 var promises = [];
 keys.forEach(async key => {
@@ -121,7 +121,7 @@ keys.forEach(async key => {
 setTimeout(() => {
     Promise.all(promises)
     .then(() => {
-        console.log('Wrote data to docs/detected_issues.json');
-        fs.writeFileSync('docs/detected_issues.json', JSON.stringify(detected_issues));
+        console.log('Wrote data to docs/data/detected_issues.json');
+        fs.writeFileSync('docs/data/detected_issues.json', JSON.stringify(detected_issues));
     });
 }, 3000);
