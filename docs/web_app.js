@@ -47,7 +47,7 @@ function create_issues_table(key){
     });
     if(sorted_issues.length==0){
         var tr = create_html_element('tr');
-        var td = create_html_element('td', {innerText: `There are now elements with improper values for ${key}!`, colspan: 3, class: 'text-center'});
+        var td = create_html_element('td', {innerText: `There are no elements with improper values for ${key}!`, colspan: 3, class: 'text-center'});
         tr.appendChild(td);
         new_tbody.appendChild(tr);
     }
