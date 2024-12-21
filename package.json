@@ -6,7 +6,8 @@
     "node": "21.x"
   },
   "scripts": {
-    "build": "node app.js"
+    "build": "node build.js",
+    "serve": "http-server -p 8080 -c-1 ./docs"
   },
   "keywords": [],
   "author": "Dimitar5555",
