@@ -3,6 +3,29 @@ const TRIANGLE_DOWN = '▼';
 
 var data = {};
 var base_data = {};
+
+function format_number(number) {
+    const split = number.toString().split('').reverse();
+    let to_return = '';
+    let digits = split.length;
+    if(digits%3 > 0) {
+        for(let i=0;i<digits%3;i++) {
+            to_return += split.pop();
+        }
+        to_return += ' ';
+    }
+    let counter = 0;
+    while(split.length > 0) {
+        to_return += split.pop();
+        counter++;
+        if(counter%3==0 && split.length>0) {
+            to_return += ' ';
+        }
+    }
+
+    return to_return;
+}
+
 function create_html_element(element, attributes={}){
     var el = document.createElement(element);
     if(Object.keys(attributes).length>0){
@@ -26,7 +49,7 @@ function create_issues_table(key){
     sorted_issues.forEach((issue) => {
         var tr = create_html_element('tr');
         var td1 = create_html_element('td', {innerText: `${key}${key_data.fuzzy_match?'~':'='}${issue[0]}`});
-        var td2 = create_html_element('td', {innerText: issue[1]});
+        var td2 = create_html_element('td', {innerText: format_number(issue[1])});
         var td3 = create_html_element('td');
         
         var a1 = create_html_element('a', {
@@ -130,7 +153,7 @@ function generate_row(key, as_subkey_of=false){
         //for all other cases
         total_entries = Object.keys(data[key]).reduce((total, value) => total + data[key][value], 0);
     }
-    var td2 = create_html_element('td', {innerText: total_entries});
+    var td2 = create_html_element('td', {innerText: format_number(total_entries), class: 'text-end'});
 
     tr.appendChild(td0);
     tr.appendChild(td1);
@@ -149,7 +172,13 @@ function generate_key_list_table(){
     //adds last row in keys table
     var last_tr = create_html_element('tr');
     var last_td0 = create_html_element('td', {innerText: 'Total', colspan: 2, class: 'fw-bold'});
-    var last_td1 = create_html_element('td', {innerText: Object.keys(data).map(key => Object.keys(data[key]).map(value => data[key][value]).reduce((total, current) => total + current, 0)).reduce((total, current) => total + current, 0), class: 'fw-bold'});
+    const total_count = Object.keys(data)
+    .map(key => Object.keys(data[key])
+        .map(value => data[key][value])
+        .reduce((total, current) => total + current, 0)
+    )
+    .reduce((total, current) => total + current, 0);
+    var last_td1 = create_html_element('td', {innerText: format_number(total_count), class: 'fw-bold text-end'});
     last_tr.appendChild(last_td0);
     last_tr.appendChild(last_td1);
     console.log(Object.keys(data).map(key => Object.keys(data[key]).map(value => data[key][value])));
