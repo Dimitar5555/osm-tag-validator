@@ -699,5 +699,17 @@
             "lader:paired",
             "pictograms"
         ]
+    },
+    {
+        "key": "house",
+        "allowed_values": [
+            "bungalow",
+            "detached",
+            "link-detached",
+            "maisonette",
+            "semi-detached",
+            "terrace",
+            "terraced"
+        ]
     }
 ]
