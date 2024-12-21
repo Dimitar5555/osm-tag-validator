@@ -11,9 +11,6 @@
   "keywords": [],
   "author": "Dimitar5555",
   "license": "ISC",
-  "dependencies": {
-    "node-fetch": "^2.6.7"
-  },
   "directories": {
     "doc": "docs"
   },

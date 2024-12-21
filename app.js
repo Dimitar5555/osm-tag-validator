@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const fs = require('fs');
 const base_url = 'https://taginfo.openstreetmap.org/api/4/key/';
 const VALUES_PER_PAGE = 999;
