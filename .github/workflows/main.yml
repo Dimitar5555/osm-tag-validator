@@ -1,5 +1,6 @@
 name: Update tags data
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 10 */1 * *'
   push:
