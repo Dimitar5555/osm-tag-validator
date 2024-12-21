@@ -1,3 +1,6 @@
+const TRIANGLE_UP = '▲';
+const TRIANGLE_DOWN = '▼';
+
 var data = {};
 var base_data = {};
 function create_html_element(element, attributes={}){
@@ -75,14 +78,14 @@ function generate_row(key, as_subkey_of=false){
     var tr = create_html_element('tr');
     var td0 = create_html_element('td', {class: 'text-center'});
     if(base_data[key].subkeys && base_data[key].subkeys.length>0 && !as_subkey_of){
-        var btn = create_html_element('button', {innerText: '+', 'data-expand-parent-key': key});
+        var btn = create_html_element('button', {innerText: TRIANGLE_DOWN, 'data-expand-parent-key': key});
         btn.onclick = (e) => {
             e.preventDefault();
             Array.from(document.querySelectorAll(`[data-parent-key='${e.target.dataset.expandParentKey}']`))
             .forEach(element => {
                 element.classList.toggle('d-none')
             });
-            btn.innerText = btn.innerText=='-'?'+':'-'; 
+            btn.innerText = btn.innerText==TRIANGLE_DOWN?TRIANGLE_UP:TRIANGLE_DOWN; 
         };
         td0.appendChild(btn);
     }
