@@ -39,6 +39,27 @@ function create_html_element(element, attributes={}){
     }
     return el;
 }
+
+function generate_tag_links(key, value, parent_el, fuzzy_match=false) {
+    {
+        const overpass_link = `https://overpass-turbo.eu/?w="${key}"${fuzzy_match?'~':'='}"${value}"+global&R`;
+        const a = create_html_element('a', {href: overpass_link, target: '_blank', innerText: 'Overpass Turbo'});
+        parent_el.appendChild(a);
+    }
+    parent_el.appendChild(document.createTextNode(' '));
+    {
+        const level0_link = `https://level0.osmz.ru/?url=${encodeURI('//overpass-api.de/api/interpreter?data='+encodeURI(`[out:xml][timeout:25];(nwr["${key}"${fuzzy_match?'~':'='}"${value}"];);out meta;>;out meta qt;`))}`;
+        const a = create_html_element('a', {href: level0_link, target: '_blank', innerText: 'Level0'});
+        parent_el.appendChild(a);
+    }
+    parent_el.appendChild(document.createTextNode(' '));
+    {
+        const taginfo_link = `https://taginfo.openstreetmap.org/tags/${key}=${value}`;
+        const a = create_html_element('a', {href: taginfo_link, target: '_blank', innerText: 'Taginfo'});
+        parent_el.appendChild(a);
+    }
+}
+
 function create_issues_table(key){
     var issues = data[key];
     var key_data = base_data[key];
@@ -52,20 +73,7 @@ function create_issues_table(key){
         var td2 = create_html_element('td', {innerText: format_number(issue[1])});
         var td3 = create_html_element('td');
         
-        var a1 = create_html_element('a', {
-            innerText: 'Overpass Turbo',
-            href: `https://overpass-turbo.eu/?w="${key}"${key_data.fuzzy_match?'~':'='}"${issue[0]}"+global&R`,
-            target: '_blank'});
-        var query = `[out:xml][timeout:25];(nwr["${key}"${key_data.fuzzy_match?'~':'='}"${issue[0]}"];);out meta;>;out meta qt;`;
-        
-        var a2 = create_html_element('a', {
-            innerText: 'Level0',
-            href: `https://level0.osmz.ru/?url=${encodeURI('//overpass-api.de/api/interpreter?data='+encodeURI(query))}`,
-            target: '_blank'
-        });
-        td3.appendChild(a1);
-        td3.appendChild(document.createTextNode(' '))
-        td3.appendChild(a2);
+        generate_tag_links(key, issue[0], td3, key_data.fuzzy_match);
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
